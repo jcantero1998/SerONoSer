@@ -10,14 +10,14 @@ namespace Entidades
     {
         public int NumPregunta { get; set; }
         public string Enunciado { get; set; }
-        public string Nivel { get; set; }
+        public int Nivel { get; set; }
         public List<Respuesta> Respuestas { get; set; }
 
-        public Pregunta()
+        public Pregunta(int numPregunta)
         {
         }
 
-        public Pregunta(int numPregunta, string enunciado, string nivel, List<Respuesta> respuestas)
+        public Pregunta(int numPregunta, string enunciado, int nivel, List<Respuesta> respuestas)
         {
             NumPregunta = numPregunta;
             Enunciado = enunciado;
