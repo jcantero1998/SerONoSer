@@ -14,6 +14,10 @@ namespace Tablero
 {
     public partial class FrmJuego : Form
     {
+        private int nivel = 1;
+        private Pregunta preguntaActual;
+
+        private CapaNegocio.Negocio gestor = new CapaNegocio.Negocio();
 
         public FrmJuego()
         {
@@ -21,7 +25,28 @@ namespace Tablero
         }
         private void FrmJuego_Load(object sender, EventArgs e)
         {
+            gestor.PreguntasPorNivel(nivel);
+            preguntaActual = gestor.PreguntaAlAzar();
 
+            lblEnunciado.Text = preguntaActual.Enunciado;
+            List<Button> botones = ObtenerBotonesRespuestas();
+            for (int i = 0; i < 12; i++)
+            {
+                botones.ElementAt(i).Text = preguntaActual.Respuestas.ElementAt(i).PosibleRespuesta;
+            }
+
+            //MessageBox.Show(pregunta.Enunciado);
+
+            //MessageBox.Show(gestor.preguntas.Count().ToString());
+
+            //if (gestor.preguntas.Contains(pregunta))
+            //{
+            //    MessageBox.Show("la contiene");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("no la contiene");
+            //}
         }
         private List<Button> ObtenerBotonesRespuestas()
         {

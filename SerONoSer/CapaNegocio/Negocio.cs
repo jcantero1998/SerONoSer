@@ -7,16 +7,29 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    class Negocio
+    public class Negocio
     {
-        //Instanciamos el objeto gestor para poder usar los metodos de Datos.Gestor
-        public static CapaDatos.DatosDSet gestor = new CapaDatos.DatosDSet();
+        //Instanciamos el objeto gestor para poder usar los metodos de la capa de datos
+        private CapaDatos.DatosDSet gestor = new CapaDatos.DatosDSet();
+
+        public List<Pregunta> preguntas;
 
         public List<Pregunta> PreguntasPorNivel(int nivel)
         {
-            List<Pregunta> reguntas;
-            reguntas = gestor.PreguntasPorNivel(nivel);
-            return reguntas;
+            return preguntas = gestor.PreguntasPorNivel(nivel);
         }
+
+        public Pregunta PreguntaAlAzar()
+        {
+            Random random = new Random();
+            int rnd = random.Next(preguntas.Count);
+            Pregunta pregunta = preguntas.ElementAt(rnd);
+            preguntas.RemoveAt(rnd);
+
+            return pregunta;
+        }
+
+        //TODO Sacar los posibles mensajes de error que llegan de la capa anterior, o si alguno se puede producir en esta.
+
     }
 }
