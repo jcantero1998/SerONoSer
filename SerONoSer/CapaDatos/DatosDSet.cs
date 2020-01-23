@@ -10,6 +10,7 @@ namespace CapaDatos
 {
     public class DatosDSet
     {
+
         //Creamos el DataSet (DataSet: Estructura que simula una base de daos con la peculiaridad de que trabaja en memoria)
         DataSet1 ds = new DataSet1();
 
@@ -21,19 +22,38 @@ namespace CapaDatos
         public DatosDSet()
         {
             // Llena las tablas que estan en el dataset ds a partir de la BD
-            //TODO Control de errores
-            daPreguntas.Fill(ds.Preguntas); 
-            daRespuestas.Fill(ds.Respuestas);
-            daRespuestasNoValidas.Fill(ds.RespNoValidas);
+            try
+            {
+                daPreguntas.Fill(ds.Preguntas);
+                daRespuestas.Fill(ds.Respuestas);
+                daRespuestasNoValidas.Fill(ds.RespNoValidas);
+            }
+            catch (Exception ex)
+            {//TODO CONTROL DE ERRORES
+                //error = ex.Message;
+            }
+
         }
 
         //devolver todas las preguntas de un nivel pasado como parámetro.
         //Comprobar que ese nivel no es superior al máximo existente (si lo es sacará un mensaje que lo explique así).
 
-        public List<Pregunta> PreguntasPorNivel(int nivel)
+        public List<Pregunta> PreguntasPorNivel(int nivel, out string mens)
         {
-            List<PreguntasRow> drPregs = ds.Preguntas.Where(drPreg => drPreg.Nivel.Equals(nivel)).ToList();
-            List<Pregunta> pregs = drPregs.Select(dr => new Pregunta(dr.NumPregunta,dr.Enunciado, dr.Nivel, RespuestasDeUnaPregunta(dr))).ToList();
+            mens = "";
+            List<Pregunta> pregs = null;
+
+            var nivelmax = ds.Preguntas.OrderByDescending(drPreg => drPreg.Nivel).First();
+            if (nivelmax.Nivel<nivel)
+            {
+                mens = "Se ha sobrepasado el nivel maximo";
+            }
+            else
+            {
+                List<PreguntasRow> drPregs = ds.Preguntas.Where(drPreg => drPreg.Nivel.Equals(nivel)).ToList();
+                pregs = drPregs.Select(dr => new Pregunta(dr.NumPregunta, dr.Enunciado, dr.Nivel, RespuestasDeUnaPregunta(dr))).ToList();
+            }
+
             return pregs;
         }
         public List<Respuesta> RespuestasDeUnaPregunta(PreguntasRow dr)

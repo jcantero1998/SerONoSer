@@ -14,19 +14,29 @@ namespace CapaNegocio
 
         public List<Pregunta> preguntas;
 
-        public List<Pregunta> PreguntasPorNivel(int nivel)
+        public List<Pregunta> PreguntasPorNivel(int nivel, out string mens)
         {
-            return preguntas = gestor.PreguntasPorNivel(nivel);
+            return preguntas = gestor.PreguntasPorNivel(nivel, out mens);
         }
 
-        public Pregunta PreguntaAlAzar()
+        public Pregunta PreguntaAlAzar( out string msg)
         {
-            Random random = new Random();
-            int rnd = random.Next(preguntas.Count);
-            Pregunta pregunta = preguntas.ElementAt(rnd);
-            preguntas.RemoveAt(rnd);
+            if (preguntas.Count==0)
+            {
+                msg = "No quedan preguntas";
+                return null;
+            }
+            else
+            {
+                msg = "";
 
-            return pregunta;
+                Random random = new Random();
+                int rnd = random.Next(preguntas.Count);
+                Pregunta pregunta = preguntas.ElementAt(rnd);
+                preguntas.RemoveAt(rnd);
+
+                return pregunta;
+            }
         }
 
         //TODO Sacar los posibles mensajes de error que llegan de la capa anterior, o si alguno se puede producir en esta.

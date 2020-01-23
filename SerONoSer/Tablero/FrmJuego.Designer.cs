@@ -81,6 +81,7 @@
             this.btn12.Size = new System.Drawing.Size(187, 119);
             this.btn12.TabIndex = 27;
             this.btn12.UseVisualStyleBackColor = true;
+            this.btn12.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn11
             // 
@@ -89,6 +90,7 @@
             this.btn11.Size = new System.Drawing.Size(187, 119);
             this.btn11.TabIndex = 26;
             this.btn11.UseVisualStyleBackColor = true;
+            this.btn11.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn10
             // 
@@ -97,6 +99,7 @@
             this.btn10.Size = new System.Drawing.Size(187, 119);
             this.btn10.TabIndex = 25;
             this.btn10.UseVisualStyleBackColor = true;
+            this.btn10.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn9
             // 
@@ -105,14 +108,16 @@
             this.btn9.Size = new System.Drawing.Size(187, 119);
             this.btn9.TabIndex = 24;
             this.btn9.UseVisualStyleBackColor = true;
+            this.btn9.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn8
             // 
-            this.btn8.Location = new System.Drawing.Point(671, 236);
+            this.btn8.Location = new System.Drawing.Point(671, 235);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(187, 119);
             this.btn8.TabIndex = 23;
             this.btn8.UseVisualStyleBackColor = true;
+            this.btn8.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn7
             // 
@@ -121,6 +126,7 @@
             this.btn7.Size = new System.Drawing.Size(187, 119);
             this.btn7.TabIndex = 22;
             this.btn7.UseVisualStyleBackColor = true;
+            this.btn7.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn6
             // 
@@ -129,6 +135,7 @@
             this.btn6.Size = new System.Drawing.Size(187, 119);
             this.btn6.TabIndex = 21;
             this.btn6.UseVisualStyleBackColor = true;
+            this.btn6.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn5
             // 
@@ -137,6 +144,7 @@
             this.btn5.Size = new System.Drawing.Size(187, 119);
             this.btn5.TabIndex = 20;
             this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn4
             // 
@@ -145,6 +153,7 @@
             this.btn4.Size = new System.Drawing.Size(187, 119);
             this.btn4.TabIndex = 19;
             this.btn4.UseVisualStyleBackColor = true;
+            this.btn4.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn3
             // 
@@ -153,6 +162,7 @@
             this.btn3.Size = new System.Drawing.Size(187, 119);
             this.btn3.TabIndex = 18;
             this.btn3.UseVisualStyleBackColor = true;
+            this.btn3.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn2
             // 
@@ -161,6 +171,7 @@
             this.btn2.Size = new System.Drawing.Size(187, 119);
             this.btn2.TabIndex = 17;
             this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btn1
             // 
@@ -169,6 +180,7 @@
             this.btn1.Size = new System.Drawing.Size(187, 119);
             this.btn1.TabIndex = 16;
             this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Click += new System.EventHandler(this.btnPosibleRespuesta_Click);
             // 
             // btnComenzar
             // 
@@ -198,6 +210,7 @@
             // 
             // tmrTiempoTotal
             // 
+            this.tmrTiempoTotal.Interval = 1060;
             this.tmrTiempoTotal.Tick += new System.EventHandler(this.tmrTiempoTotal_Tick);
             // 
             // lblTiempo
