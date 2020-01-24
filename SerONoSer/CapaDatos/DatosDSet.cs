@@ -10,6 +10,7 @@ namespace CapaDatos
 {
     public class DatosDSet
     {
+        public string error;
 
         //Creamos el DataSet (DataSet: Estructura que simula una base de daos con la peculiaridad de que trabaja en memoria)
         DataSet1 ds = new DataSet1();
@@ -28,9 +29,9 @@ namespace CapaDatos
                 daRespuestas.Fill(ds.Respuestas);
                 daRespuestasNoValidas.Fill(ds.RespNoValidas);
             }
-            catch (Exception ex)
-            {//TODO CONTROL DE ERRORES
-                //error = ex.Message;
+            catch (Exception)
+            {
+                error = "Se ha producido un error en una de las tablas de la base de datos";
             }
 
         }
@@ -40,6 +41,12 @@ namespace CapaDatos
 
         public List<Pregunta> PreguntasPorNivel(int nivel, out string mens)
         {
+            if (error!="")
+            {
+                mens = error;
+                return null;
+            }
+
             mens = "";
             List<Pregunta> pregs = null;
 
@@ -56,6 +63,8 @@ namespace CapaDatos
 
             return pregs;
         }
+
+        //TODO Hacer que me devuelva 8 preguntas correctas y 4 incorrectas
         public List<Respuesta> RespuestasDeUnaPregunta(PreguntasRow dr)
         {
             List<Respuesta> respuestas = dr.GetRespuestasRows().Select(drResp => new Respuesta(drResp.NumPregunta, drResp.NumRespuesta, drResp.PosibleRespuesta, drResp.Valida, ExplicacionDeUnaRespuesta(drResp))).ToList();

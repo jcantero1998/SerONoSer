@@ -11,7 +11,7 @@ namespace CapaNegocio
     {
         //Instanciamos el objeto gestor para poder usar los metodos de la capa de datos
         private CapaDatos.DatosDSet gestor = new CapaDatos.DatosDSet();
-
+        
         public List<Pregunta> preguntas;
 
         public List<Pregunta> PreguntasPorNivel(int nivel, out string mens)

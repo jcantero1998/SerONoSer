@@ -41,10 +41,17 @@ namespace Tablero
             }
             else
             {
-                nivel -= 1;
-                lblNivel.Text = nivel.ToString();
-                MessageBox.Show("¡¡¡Has ganado!!!", "Enhorabuena",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                Close();
+                if (mens== "Se ha sobrepasado el nivel maximo")
+                {
+                    nivel -= 1;
+                    lblNivel.Text = nivel.ToString();
+                    MessageBox.Show("¡¡¡Has ganado!!!", "Enhorabuena", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(mens);
+                }
             }
         }
         private void PreguntaAlAzar()
@@ -155,7 +162,7 @@ namespace Tablero
             lblTiempo.Text = "12";
             tiempo = 12;
             tmrTiempoTotal.Enabled = true;
-            nivel = 1;
+            nivel = 1;//TODO Que pasa si introducen oreguntas de nivel 0, o de nivel 50, o si no hay preguntas
             CargarPreguntasDeUnNivel(nivel);
             lblNivel.Text = nivel.ToString();
         }
