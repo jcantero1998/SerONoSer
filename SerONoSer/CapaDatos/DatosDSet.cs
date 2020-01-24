@@ -41,6 +41,11 @@ namespace CapaDatos
 
         public List<Pregunta> PreguntasPorNivel(int nivel, out string mens)
         {
+            if (error != "" && error != null)
+            {
+                mens = error;
+                return null;
+            }
             mens = "";
             List<Pregunta> pregs = null;
 
@@ -54,19 +59,14 @@ namespace CapaDatos
                 List<PreguntasRow> drPregs = ds.Preguntas.Where(drPreg => drPreg.Nivel.Equals(nivel)).ToList();
                 pregs = drPregs.Select(dr => new Pregunta(dr.NumPregunta, dr.Enunciado, dr.Nivel, RespuestasDeUnaPregunta(dr))).ToList();
             }
-            if (error != "")
-            {
-                mens = error;
-                return null;
-            }
+
             return pregs;
         }
 
-        //TODO Hacer que me devuelva 8 preguntas correctas y 4 incorrectas
         public List<Respuesta> RespuestasDeUnaPregunta(PreguntasRow dr)
         {
             List<Respuesta> respuestas = dr.GetRespuestasRows().Select(drResp => new Respuesta(drResp.NumPregunta, drResp.NumRespuesta, drResp.PosibleRespuesta, drResp.Valida, ExplicacionDeUnaRespuesta(drResp))).ToList();
-            if (respuestas.Count!=8)
+            if (respuestas.Count!=12)
             {
                 error = "Una de las preguntas no contiene 12 respuestas";
             }

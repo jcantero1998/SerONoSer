@@ -51,6 +51,7 @@ namespace Tablero
                 else
                 {
                     MessageBox.Show(mens);
+                    finalizar();
                 }
             }
         }
@@ -77,6 +78,7 @@ namespace Tablero
                 botones.ElementAt(i).BackColor = SystemColors.Control;
                 //Le pongo como texto, la posible respuesta
                 botones.ElementAt(i).Text = preguntaActual.Respuestas.ElementAt(i).PosibleRespuesta;
+
 
                 //En el tag guardo el boton
                 botones.ElementAt(i).Tag = preguntaActual.Respuestas.ElementAt(i);
@@ -146,12 +148,15 @@ namespace Tablero
             //si las preguntas incorrectas son 4
             else if (respuestasIncorrectas == 4)
             {
-                tmrTiempoTotal.Enabled = false;
                 MessageBox.Show("Fin del juego...");
-                Close();
+                finalizar();
             }
         }
-
+        private void finalizar()
+        {
+            tmrTiempoTotal.Enabled = false;
+            Close();
+        }
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             Close();
@@ -162,7 +167,7 @@ namespace Tablero
             lblTiempo.Text = "12";
             tiempo = 12;
             tmrTiempoTotal.Enabled = true;
-            nivel = 1;//TODO Que pasa si introducen oreguntas de nivel 0, o de nivel 50, o si no hay preguntas
+            nivel = 1;
             CargarPreguntasDeUnNivel(nivel);
             lblNivel.Text = nivel.ToString();
         }
@@ -173,10 +178,8 @@ namespace Tablero
 
             if (tiempo==0)
             {
-                tmrTiempoTotal.Enabled = false;
-
                 MessageBox.Show("El tiempo ha llegado a 0, Fin del juego...");
-                Close();
+                finalizar();
             }
             lblTiempo.Text = tiempo.ToString();
 
