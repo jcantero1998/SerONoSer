@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class DatosDSet
     {
-        public string error;
+        public string error; // TODO Esta no es una buena lógica, y si lo fuese, debería ser propiedad
 
         //Creamos el DataSet (DataSet: Estructura que simula una base de daos con la peculiaridad de que trabaja en memoria)
         DataSet1 ds = new DataSet1();
@@ -20,7 +20,7 @@ namespace CapaDatos
         DataSet1TableAdapters.RespuestasTableAdapter daRespuestas = new DataSet1TableAdapters.RespuestasTableAdapter();
         DataSet1TableAdapters.RespNoValidasTableAdapter daRespuestasNoValidas = new DataSet1TableAdapters.RespNoValidasTableAdapter();
 
-        public DatosDSet()
+        public DatosDSet() // TODO El propio constructor debería sacar el mensaje de error por parámetro o como fuese
         {
             // Llena las tablas que estan en el dataset ds a partir de la BD
             try
@@ -49,7 +49,7 @@ namespace CapaDatos
             mens = "";
             List<Pregunta> pregs = null;
 
-            var nivelmax = ds.Preguntas.OrderByDescending(drPreg => drPreg.Nivel).First();
+            var nivelmax = ds.Preguntas.OrderByDescending(drPreg => drPreg.Nivel).First(); // TODO Existe el método Max
             if (nivelmax.Nivel<nivel)
             {
                 mens = "Se ha sobrepasado el nivel maximo";
@@ -74,6 +74,7 @@ namespace CapaDatos
         }
         public string ExplicacionDeUnaRespuesta(RespuestasRow dr)
         {
+            // TODO Debía devolver un mensaje en concreto en lugar de null
             return dr.GetRespNoValidasRows().Select(drResp => drResp.Explicacion).SingleOrDefault(); //retorna nulo si no hay explicacion (gracias a SingleOrDefault)
         }
     }

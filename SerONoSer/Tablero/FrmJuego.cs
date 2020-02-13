@@ -90,7 +90,8 @@ namespace Tablero
         }
 
         private void btnPosibleRespuesta_Click(object sender, EventArgs e)
-        {//TODO Que no se pueda pulsar más de 1 vez en un mismo boton
+        {//TODO Que no se pueda pulsar más de 1 vez en un mismo boton --> No se deshabilitan
+            // TODO Debía modificar la etiqueta de errores
             try
             {
                 Button btnActual = (Button)sender;
